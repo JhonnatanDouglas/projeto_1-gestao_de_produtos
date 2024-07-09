@@ -1,20 +1,32 @@
 package product;
 
+import exceptions.NegativePriceException;
+import exceptions.NotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class ProductController extends ProductModel {
-    
-    // public String getProduct(String product, int amount, double  price ) {
-        
-    // }
+public class ProductController {
+    private List<ProductModel> products = new ArrayList<>();    
 
-    public void getAllProducts(List<ProductModel> productList) {
-        productList.forEach(product -> {System.out.println(getProduct(product.getProductItem(), product.getAmountItem(), product.getPriceItem()));
-        });
+    public String create(ProductModel item) throws NegativePriceException {
+        if (item.getPriceItem() <= 0) {
+            throw new NegativePriceException("Número negativo! Precisa ser um número positivo!");
+        }
+        products.add(item);
+        return "Produto: " + item.getName() + " foi adicionado!";
     }
 
-    // protected createProduct(String product, int amount, double  price) {
-    //     productList.add(product, amount, price);
+    public List<ProductModel> read() {
+        return products;
+    }
 
-    // }
+    public double retrievePrice(String barCode) throws NotFoundException{
+        for (ProductModel product : products) {
+            if (product.getBarCode().equals(barCode)) {
+                return product.getPriceItem();
+            }
+        }
+        
+        throw new NotFoundException("Produto não encontrado!");
+    }
 }

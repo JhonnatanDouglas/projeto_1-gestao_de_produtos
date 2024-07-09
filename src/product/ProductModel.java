@@ -1,27 +1,53 @@
 package product;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ProductModel {
-    protected String productItem;
-    protected int amountItem;
-    protected double priceItem;
-    protected List<ProductModel> productList;
+    private String barCode;
+    private String name;
+    private double priceItem;
+    private int stock;
 
-    public ProductModel() {
-        productList = new ArrayList<>();
+    public ProductModel(String barCode, String name, double priceItem, int stock) { 
+        this.barCode = barCode;
+        this.name = name;
+        this.priceItem = priceItem;
+        this.stock = stock;
     }
 
-    public String getProductItem() {
-        return this.productItem;
+    public String getBarCode() {
+        return barCode;
     }
 
-    public int getAmountItem() {
-        return this.amountItem;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String newName) {
+        this.name = newName;
     }
 
     public double getPriceItem() {
-        return this.priceItem;
+        return priceItem;
+    }
+
+    public void setPriceItem(double newPriceItem) {
+        this.priceItem = newPriceItem;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int newStock) {
+        this.stock = newStock;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductModel: {" +
+                "barCode=' " + barCode + '\'' +
+                ", name=' " + name + '\'' +
+                ", priceItem= " + priceItem +
+                ", stock= " + stock +
+                '}';
     }
 }
